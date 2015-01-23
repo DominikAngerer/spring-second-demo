@@ -27,7 +27,7 @@ public class Bookmark {
 		this.account = account;
 	}
 
-	Bookmark() { // jpa only
+	public Bookmark() { // jpa only
 	}
 
 	public Account getAccount() {
