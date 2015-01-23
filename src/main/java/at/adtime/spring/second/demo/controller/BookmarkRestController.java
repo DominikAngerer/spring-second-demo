@@ -1,8 +1,12 @@
 package at.adtime.spring.second.demo.controller;
 
-import java.util.Collection;
+import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,53 +15,64 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import at.adtime.spring.second.demo.controller.exception.UserNotFoundException;
 import at.adtime.spring.second.demo.model.Bookmark;
 import at.adtime.spring.second.demo.repositories.AccountRepository;
 import at.adtime.spring.second.demo.repositories.BookmarkRepository;
+import at.adtime.spring.second.demo.resource.BookmarkResource;
 
 @RestController
 @RequestMapping("/{userId}/bookmarks")
-class BookmarkRestController {
+public class BookmarkRestController {
 
 	private final BookmarkRepository bookmarkRepository;
 
 	private final AccountRepository accountRepository;
 
 	@RequestMapping(method = RequestMethod.POST)
-	ResponseEntity<?> add(@PathVariable String userId, @RequestBody Bookmark input) {
+	public ResponseEntity<?> add(@PathVariable String userId,
+			@RequestBody Bookmark input) {
+
 		this.validateUser(userId);
-		return (this.accountRepository
-				.findByUsername(userId))
+
+		return accountRepository
+				.findByUsername(userId)
 				.map(account -> {
-					Bookmark result = bookmarkRepository.save(new Bookmark(account,
-							input.uri, input.description));
+					Bookmark bookmark = bookmarkRepository.save(new Bookmark(
+							account, input.uri, input.description));
 
 					HttpHeaders httpHeaders = new HttpHeaders();
-					httpHeaders.setLocation(ServletUriComponentsBuilder
-							.fromCurrentRequest().path("/{id}")
-							.buildAndExpand(result.getId()).toUri());
-					return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
-				}).get();
 
+					Link forOneBookmark = new BookmarkResource(bookmark)
+							.getLink("self");
+					httpHeaders.setLocation(URI.create(forOneBookmark.getHref()));
+
+					return new ResponseEntity<>(null, httpHeaders,
+							HttpStatus.CREATED);
+				}).get();
 	}
 
 	@RequestMapping(value = "/{bookmarkId}", method = RequestMethod.GET)
-	Bookmark readBookmark(@PathVariable String userId, @PathVariable Long bookmarkId) {
+	public BookmarkResource readBookmark(@PathVariable String userId,
+			@PathVariable Long bookmarkId) {
 		this.validateUser(userId);
-		return this.bookmarkRepository.findOne(bookmarkId);
+		return new BookmarkResource(this.bookmarkRepository.findOne(bookmarkId));
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	Collection<Bookmark> readBookmarks(@PathVariable String userId) {
+	public Resources<BookmarkResource> readBookmarks(@PathVariable String userId) {
+
 		this.validateUser(userId);
-		return this.bookmarkRepository.findByAccountUsername(userId);
+
+		List<BookmarkResource> bookmarkResourceList = bookmarkRepository
+				.findByAccountUsername(userId).stream()
+				.map(BookmarkResource::new).collect(Collectors.toList());
+		return new Resources<BookmarkResource>(bookmarkResourceList);
 	}
 
 	@Autowired
-	BookmarkRestController(BookmarkRepository bookmarkRepository,
+	public BookmarkRestController(BookmarkRepository bookmarkRepository,
 			AccountRepository accountRepository) {
 		this.bookmarkRepository = bookmarkRepository;
 		this.accountRepository = accountRepository;
