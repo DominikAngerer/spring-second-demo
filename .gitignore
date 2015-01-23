@@ -36,3 +36,6 @@ local.properties
 .texlipse.texlipse
 
 *.class
+
+Servers/
+target/
