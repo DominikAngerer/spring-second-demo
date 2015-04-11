@@ -1,10 +1,10 @@
-package at.adtime.spring.second.demo.resource;
+package com.dominikangerer.spring.second.demo.resource;
 
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.ResourceSupport;
 
-import at.adtime.spring.second.demo.model.Bookmark;
-import at.adtime.spring.second.demo.controller.BookmarkRestController;
+import com.dominikangerer.spring.second.demo.controller.BookmarkRestController;
+import com.dominikangerer.spring.second.demo.model.Bookmark;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;

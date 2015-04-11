@@ -1,4 +1,4 @@
-package at.adtime.spring.second.demo.controller.test;
+package com.dominikangerer.spring.second.demo.controller.test;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -30,11 +30,11 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
-import at.adtime.spring.second.demo.SpringSecondDemoApplication;
-import at.adtime.spring.second.demo.model.Account;
-import at.adtime.spring.second.demo.model.Bookmark;
-import at.adtime.spring.second.demo.repositories.AccountRepository;
-import at.adtime.spring.second.demo.repositories.BookmarkRepository;
+import com.dominikangerer.spring.second.demo.SpringSecondDemoApplication;
+import com.dominikangerer.spring.second.demo.model.Account;
+import com.dominikangerer.spring.second.demo.model.Bookmark;
+import com.dominikangerer.spring.second.demo.repositories.AccountRepository;
+import com.dominikangerer.spring.second.demo.repositories.BookmarkRepository;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)

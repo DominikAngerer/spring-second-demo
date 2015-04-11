@@ -1,4 +1,4 @@
-package at.adtime.spring.second.demo.controller.advice;
+package com.dominikangerer.spring.second.demo.controller.advice;
 
 import org.springframework.hateoas.VndErrors;
 import org.springframework.http.HttpStatus;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import at.adtime.spring.second.demo.controller.exception.UserNotFoundException;
+import com.dominikangerer.spring.second.demo.controller.exception.UserNotFoundException;
 
 @ControllerAdvice
 public class BookmarkControllerAdvice {

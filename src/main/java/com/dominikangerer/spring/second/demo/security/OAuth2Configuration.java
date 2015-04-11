@@ -1,4 +1,4 @@
-package at.adtime.spring.second.demo.security;
+package com.dominikangerer.spring.second.demo.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

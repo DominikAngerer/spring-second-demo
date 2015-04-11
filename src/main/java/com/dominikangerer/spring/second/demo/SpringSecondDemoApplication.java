@@ -1,4 +1,4 @@
-package at.adtime.spring.second.demo;
+package com.dominikangerer.spring.second.demo;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -22,10 +22,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 
-import at.adtime.spring.second.demo.model.Account;
-import at.adtime.spring.second.demo.model.Bookmark;
-import at.adtime.spring.second.demo.repositories.AccountRepository;
-import at.adtime.spring.second.demo.repositories.BookmarkRepository;
+import com.dominikangerer.spring.second.demo.model.Account;
+import com.dominikangerer.spring.second.demo.model.Bookmark;
+import com.dominikangerer.spring.second.demo.repositories.AccountRepository;
+import com.dominikangerer.spring.second.demo.repositories.BookmarkRepository;
 
 @Configuration
 @ComponentScan

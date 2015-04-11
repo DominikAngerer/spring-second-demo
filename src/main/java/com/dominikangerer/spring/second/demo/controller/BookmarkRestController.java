@@ -1,4 +1,4 @@
-package at.adtime.spring.second.demo.controller;
+package com.dominikangerer.spring.second.demo.controller;
 
 import java.net.URI;
 import java.util.List;
@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import at.adtime.spring.second.demo.controller.exception.UserNotFoundException;
-import at.adtime.spring.second.demo.model.Bookmark;
-import at.adtime.spring.second.demo.repositories.AccountRepository;
-import at.adtime.spring.second.demo.repositories.BookmarkRepository;
-import at.adtime.spring.second.demo.resource.BookmarkResource;
+import com.dominikangerer.spring.second.demo.controller.exception.UserNotFoundException;
+import com.dominikangerer.spring.second.demo.model.Bookmark;
+import com.dominikangerer.spring.second.demo.repositories.AccountRepository;
+import com.dominikangerer.spring.second.demo.repositories.BookmarkRepository;
+import com.dominikangerer.spring.second.demo.resource.BookmarkResource;
 
 @RestController
 @RequestMapping("/{userId}/bookmarks")

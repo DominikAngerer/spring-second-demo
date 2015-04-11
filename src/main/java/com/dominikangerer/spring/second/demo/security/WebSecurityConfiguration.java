@@ -1,4 +1,4 @@
-package at.adtime.spring.second.demo.security;
+package com.dominikangerer.spring.second.demo.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import at.adtime.spring.second.demo.repositories.AccountRepository;
+import com.dominikangerer.spring.second.demo.repositories.AccountRepository;
 
 
 @Configuration
